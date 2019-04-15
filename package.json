@@ -1,0 +1,30 @@
+{
+  "name": "react-native-wizard",
+  "version": "0.0.11",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talut/react-native-wizard.git"
+  },
+  "description": "React Native Wizard",
+  "keywords": [
+    "react-native",
+    "wizard",
+    "step",
+    "react native step",
+    "steps",
+    "react-native-wizard",
+    "wizard-step",
+    "react",
+    "react-step"
+  ],
+  "main": "index.tsx",
+  "author": "Talut Tasgiran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/talut/react-native-wizard/issues"
+  },
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "homepage": "https://github.com/talut/react-native-wizard"
+}
