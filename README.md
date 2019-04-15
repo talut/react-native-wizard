@@ -24,9 +24,53 @@ yarn add react-native-wizard
 |showNextButton         |If you want to get showable status of showNextButton from Step use this.
 |showPrevButton         |If you want to get showable status of showPrevButton from Step use this.|
 |ref                    |You need to set ref for using some function like `goToStep()`|    
-|currentStep            ||
-|duration               ||
-|onNext                 ||
-|onPrev                 ||
-|onFinish               ||
-|steps                  ||
+|currentStep            |You can get current step index. Also you can get that step is last step or first step.|
+|duration               |You can set duration of transition animation. Default is `500` |
+|onNext                 |If next button click and step is change, this function will run.|
+|onPrev                 |If prev button click and step is change, this function will run.|
+|onFinish               |If you click next button and if that step the last one then this function will run.|
+|steps                  |You can set step with this prop.|
+
+## Basic Usage
+
+```javascript
+
+import Wizard from 'react-native-wizard'
+import Step1 from "./yourStepsDir/Step1";
+import Step2 from "./yourStepsDir/Step2";
+import Step3 from "./yourStepsDir/Step3";
+
+// ...
+
+const steps = [
+    {
+        component: Step1,
+        props    : {
+          step1Special: "Step 1 special props"
+        }
+    },
+    {
+        component: Step2,
+        props    : {
+          step2Special: "Step 2 special props"
+        }
+    },
+    {
+        component: Step3,
+        props    : {
+          step3Special: "Step 3 special props"
+        }
+    },
+    ]
+    <Wizard
+        ref={(e) => this.wizard = e}
+        currentStep={(currentIndex, isFirstStep, isLastStep) => {
+             this.setState({
+                isLastStep  : isLastStep,
+                isFirstStep : isFirstStep,
+                currentIndex: currentIndex
+            })
+         }}
+        steps={steps}/>
+    
+```
