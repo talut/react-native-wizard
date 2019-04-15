@@ -34,8 +34,10 @@ yarn add react-native-wizard
 ## Basic Usage
 
 ```javascript
+// import Wizard
+import Wizard from "react-native-wizard"
 
-import Wizard from 'react-native-wizard'
+// Import your won step components
 import Step1 from "./yourStepsDir/Step1";
 import Step2 from "./yourStepsDir/Step2";
 import Step3 from "./yourStepsDir/Step3";
@@ -71,6 +73,7 @@ const steps = [
                 currentIndex: currentIndex
             })
          }}
-        steps={steps}/>
-    
+        steps={steps}
+    />
+
 ```
