@@ -35,13 +35,13 @@ yarn add react-native-wizard
 
 | Props                 |Usage                  |
 |-----------------------|-----------------------|
-|next()                 |this.wizard.next() // you can change this.wizard as this.blabla.next()|
-|prev()                 |this.wizard.prev() // you can change this.wizard as this.blabla.prev()|
-|goToStep(stepIndex)                 |this.wizard.goToStep(stepIndex) // you can change this.wizard as this.blabla.goToStep(stepIndex)|
+|next()                 |this.wizard.next() |
+|prev()                 |this.wizard.prev() |
+|goToStep(stepIndex)                 |this.wizard.goToStep(stepIndex)|
 
 ## Understanding the usage of Step
 
-This wizard using your component class as a child. You can set any component as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
+This wizard using your component class/function as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
 
 ## Basic Usage
 
@@ -57,12 +57,9 @@ import Step3 from "./yourStepsDir/Step3";
 // ...
 
 const steps = [
-    {
-        component: Step1,
-        props    : {
-          step1Special: "Step 1 special props"
-        }
-    },
+      {
+        component: () => <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
+      },
     {
         component: Step2,
         props    : {
