@@ -1,6 +1,7 @@
 # React Native Wizard
+ 
+Easy, convenient, quick-forming Wizard component for React Native. This package is not using any native modules so you don't need to run `react-native link`. Also this package is providing simple usage with few props and functions. You can see examples below the page.
 
-Easy, convenient, quick-forming Wizard/Stepper component for React Native. It runs smoothly for both IOS and Android. There is no need to run `react-native link`
 
 <p align='center'><img src='https://taluttasgiran.com.tr/assets/reactNativeWizardExample.gif' alt='PinView 1'></p>
 
