@@ -82,12 +82,45 @@ const steps = [
 
 You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
 
+```
+<Wizard
+              activeStep={2}
+              showNextButton={(status) => {
+                status ? console.log("SHOW") : console.log("HIDE")
+              }}
+              showPrevButton={(status) => {
+                status ? console.log("SHOW") : console.log("HIDE")
+              }}
+              ref={(e) => this.wizard = e}
+              currentStep={(currentIndex, isFirstStep, isLastStep) => {
+                this.setState({
+                  isLastStep  : isLastStep,
+                  isFirstStep : isFirstStep,
+                  currentIndex: currentIndex
+                })
+              }}
+              duration={500}
+              onNext={() => {console.log("Next page called")}}
+              onPrev={() => {console.log("Prev page called")}}
+              onFinish={() => {alert("onFinish called")}}
+              steps={steps}/>
+```
+
 ```javascript
+
+// this.wizard.next()
  <Button onPress={() => {
               this.wizard.next();
             }} title={this.state.isLastStep ? "Bitir" : "İlerle"}/>
 
+// this.wizard.prev() if is not first step!
+{!this.state.isFirstStep ? <Button onPress={() => {
+              this.wizard.prev();
+            }} title={"Geri"}/> : undefined}
+
+// this.wizard.goToStep(2)
+<Button onPress={() => {
+              this.wizard.goToStep(2);
+            }} title={"Go to index 2 If you set 3 step then that means step 3"}/>
 
 ```
-
-
