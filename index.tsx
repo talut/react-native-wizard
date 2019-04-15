@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {Animated} from 'react-native';
 
 type Props = {
-    activeStep?: number | undefined,
+    activeStep?: number,
     steps: any,
     duration: number,
-    showNextButton: boolean,
-    showPrevButton: boolean,
-    onPrev: () => void,
-    onNext: () => void,
-    onFinish: () => void,
+    showNextButton: () => void,
+    showPrevButton: () => void,
+    onPrev(): () => void | undefined,
+    onNext(): () => void | undefined,
+    onFinish(): () => void | undefined,
     currentStep: (activeStep: number, isFirstStep: boolean, isLastStep: boolean) => void,
 }
 
@@ -35,20 +35,23 @@ class Wizard extends Component<Props, States> {
             duration: !props.duration ? 500 : props.duration,
             transition: new Animated.Value(1),
         };
-
-        const isFirstStep = props.activeStep === 0;
+        const isFirstStep = !props.activeStep ? true : props.activeStep === 0;
         const isLastStep = props.steps.length - 1 === props.activeStep;
-        props.currentStep(!props.activeStep ? 0 : props.activeStep, isFirstStep, isLastStep);
+        props.currentStep((!props.activeStep ? 0 : props.activeStep), isFirstStep, isLastStep);
     }
 
-    transition(show: boolean) {
-        return Animated.timing(                  // Animate over time
-            this.state.transition,            // The animated value to drive
-            {
-                toValue: show ? 1 : 0,                   // Animate to opacity: 1 (opaque)
-                duration: this.props.duration / 2,              // Make it take a while
-            }
-        )
+    async transition(show: boolean) {
+        try {
+            await Animated.timing(                  // Animate over time
+                this.state.transition,            // The animated value to drive
+                {
+                    toValue: show ? 1 : 0,                   // Animate to opacity: 1 (opaque)
+                    duration: this.props.duration / 2,              // Make it take a while
+                }
+            )
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     // func. for next step
@@ -57,17 +60,22 @@ class Wizard extends Component<Props, States> {
         const totalStep = this.props.steps.length;
 
         if (activeStep < totalStep - 1) {
-            this.props.onNext();
-            this.props.currentStep(activeStep + 1, false, (activeStep + 1) === (totalStep - 1));
-            this.transition(false).start(() => {
+            if (this.props.onNext !== undefined) {
+                this.props.onNext()
+            }
+            this.transition(false).then(() => {
                 this.setState({
                     activeStep: activeStep + 1,
                 }, () => {
-                    this.transition(true).start();
+                    this.transition(true).then(()=>{
+                        this.props.currentStep(activeStep + 1, false, (activeStep + 1) === (totalStep - 1));
+                    });
                 });
             })
         } else {
-            this.props.onFinish();
+            if (this.props.onFinish !== undefined) {
+                this.props.onFinish()
+            }
         }
     }
 
@@ -75,13 +83,16 @@ class Wizard extends Component<Props, States> {
     prev() {
         const activeStep = this.state.activeStep;
         if (activeStep > 0) {
-            this.props.currentStep(activeStep - 1, (activeStep - 1) === 0, false);
-            this.transition(false).start(() => {
-                this.props.onPrev();
+            this.transition(false).then(() => {
+                if (this.props.onPrev !== undefined) {
+                    this.props.onPrev()
+                }
                 this.setState({
                     activeStep: activeStep - 1,
                 }, () => {
-                    this.transition(true).start();
+                    this.transition(true).then(()=>{
+                        this.props.currentStep(activeStep - 1, (activeStep - 1) === 0, false);
+                    });
                 });
             })
         } else {
@@ -93,12 +104,13 @@ class Wizard extends Component<Props, States> {
     goToStep(index: number) {
         const totalStep = this.props.steps.length;
         if (index < totalStep) {
-            this.props.currentStep(index, index === 0, index === (totalStep - 1));
-            this.transition(false).start(() => {
+            this.transition(false).then(() => {
                 this.setState({
                     activeStep: index,
                 }, () => {
-                    this.transition(true).start()
+                    this.transition(true).then(()=>{
+                        this.props.currentStep(index, index === 0, index === (totalStep - 1));
+                    })
                 });
             });
         } else {

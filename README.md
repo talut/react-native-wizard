@@ -2,6 +2,9 @@
 
 Easy, convenient, quick-forming Wizard/Stepper component for React Native. It runs smoothly for both IOS and Android. There is no need to run `react-native link`
 
+<p align='center'><img src='https://taluttasgiran.com.tr/assets/reactNativeWizardExample.gif' alt='PinView 1'></p>
+
+
 ## Getting Started
 
 **With NPM**
@@ -24,12 +27,12 @@ yarn add react-native-wizard
 |showNextButton         |If you want to get showable status of showNextButton from Step use this.
 |showPrevButton         |If you want to get showable status of showPrevButton from Step use this.|
 |ref                    |You need to set ref for using some function like `goToStep()`|    
-|currentStep            |You can get current step index. Also you can get that step is last step or first step.|
+|currentStep            |You can get current step index. Also you can get that step is last step or first step. **Required**|
 |duration               |You can set duration of transition animation. Default is `500` |
 |onNext                 |If next button click and step is change, this function will run.|
 |onPrev                 |If prev button click and step is change, this function will run.|
 |onFinish               |If you click next button and if that step the last one then this function will run.|
-|steps                  |You can set step with this prop.|
+|steps                  |You can set step with this prop. **Required**|
 
 ## Reference Functions (`ref={e=>this.wizard=e}`)
 
