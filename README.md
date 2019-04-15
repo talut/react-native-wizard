@@ -47,6 +47,20 @@ yarn add react-native-wizard
 
 This wizard using your component class/function as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
 
+## Example App
+
+You can find the usage example of the package in the example folder.
+
+```sh
+git clone https://github.com/talut/react-native-wizard
+
+cd react-native-wizard/example
+
+npm install
+
+react-native run-ios/android
+```
+
 ## Basic Usage
 
 ```javascript
