@@ -31,6 +31,18 @@ yarn add react-native-wizard
 |onFinish               |If you click next button and if that step the last one then this function will run.|
 |steps                  |You can set step with this prop.|
 
+## Reference Functions (`ref={e=>this.wizard=e}`)
+
+| Props                 |Usage                  |
+|-----------------------|-----------------------|
+|next()                 |this.wizard.next() // you can change this.wizard as this.blabla.next()|
+|prev()                 |this.wizard.prev() // you can change this.wizard as this.blabla.prev()|
+|goToStep(stepIndex)                 |this.wizard.goToStep(stepIndex) // you can change this.wizard as this.blabla.goToStep(stepIndex)|
+
+## Understanding the usage of Step
+
+This wizard using your component class as a child. You can set any component as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
+
 ## Basic Usage
 
 ```javascript
@@ -116,7 +128,7 @@ You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepInde
 // this.wizard.prev() if is not first step!
 {!this.state.isFirstStep ? <Button onPress={() => {
               this.wizard.prev();
-            }} title={"Geri"}/> : undefined}
+            }} title={"Go Back"}/> : undefined}
 
 // this.wizard.goToStep(2)
 <Button onPress={() => {
@@ -124,3 +136,7 @@ You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepInde
             }} title={"Go to index 2 If you set 3 step then that means step 3"}/>
 
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
