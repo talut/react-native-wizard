@@ -37,7 +37,7 @@ yarn add react-native-wizard
 // import Wizard
 import Wizard from "react-native-wizard"
 
-// Import your won step components
+// Import your own step components
 import Step1 from "./yourStepsDir/Step1";
 import Step2 from "./yourStepsDir/Step2";
 import Step3 from "./yourStepsDir/Step3";
@@ -77,3 +77,8 @@ const steps = [
     />
 
 ```
+
+## Advanced Usage
+
+You can access `next()`, `prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
+
