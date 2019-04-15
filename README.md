@@ -138,6 +138,9 @@ You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepInde
 
 ```
 
+### Note
+ This package has no step show component but you can easily add by yourself. Maybe at the future I can add this feature.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
