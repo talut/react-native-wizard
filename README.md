@@ -78,7 +78,16 @@ const steps = [
 
 ```
 
-## Advanced Usage
+## Advanced Usage
 
-You can access `next()`, `prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
+You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
+
+```javascript
+ <Button onPress={() => {
+              this.wizard.next();
+            }} title={this.state.isLastStep ? "Bitir" : "İlerle"}/>
+
+
+```
+
 
