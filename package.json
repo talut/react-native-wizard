@@ -1,6 +1,6 @@
 {
   "name": "react-native-wizard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/talut/react-native-wizard.git"
@@ -20,6 +20,7 @@
     "easy-wizard"
   ],
   "main": "index.tsx",
+  "types": "react-native-wizard.d.ts",
   "author": "Talut Tasgiran",
   "license": "MIT",
   "bugs": {
