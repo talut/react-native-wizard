@@ -20,6 +20,9 @@ npm install --save react-native-wizard
 yarn add react-native-wizard
 ```
 
+### 1.0.1 Features
+* TypeScript definitions added.
+
 ## Props
 
 | Props                 |Description|
