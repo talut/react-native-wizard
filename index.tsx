@@ -114,7 +114,7 @@ class Wizard extends Component<Props, States> {
                 });
             });
         } else {
-            throw new Error("Gitmek istediğiniz adım bulunamadı!")
+            throw new Error("Could not find the step you want to go!")
         }
     }
 
