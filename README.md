@@ -1,8 +1,8 @@
 # React Native Wizard
  
-Easy, convenient, quick-forming Wizard component for React Native. This package is not using any native modules so you don't need to run `react-native link`. Also this package is providing simple usage with few props and functions. You can see examples below the page.
+Easy, convenient, quick-forming Wizard component for React Native.  Also this package is providing simple usage with few props and functions. You can see examples below the page.
 
-<p align='center'><img src='#' alt='PinView 1'></p>
+<p align='center'><img src='./example/react-native-wizard.gif' alt='ReactNativeWizard'></p>
 
 
 ## v2.0.0 Released. _This is a fresh start._
