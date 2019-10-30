@@ -181,9 +181,9 @@ export default () => {
             borderBottomColor: "#dedede",
             borderBottomWidth: 1,
           }}>
-          <Button disabled={isFirstStep} title="Geri" onPress={() => wizard.current.prev()} />
+          <Button disabled={isFirstStep} title="Prev" onPress={() => wizard.current.prev()} />
           <Text>{currentStep + 1}. Step</Text>
-          <Button disabled={isLastStep} title="İleri" onPress={() => wizard.current.next()} />
+          <Button disabled={isLastStep} title="Next" onPress={() => wizard.current.next()} />
         </View>
       </SafeAreaView>
       <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
