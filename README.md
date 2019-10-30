@@ -73,15 +73,15 @@ const wizard = useRef(null)
 <Wizard ref={e=>this.wizard=e} />
 ```
 
-| Props                 |Usage With useRef |Usage without useRef|
+| Props                 |Usage _without_ useRef | Usage _with_ useRef|
 |-----------------------|-----------------------|-------------------------|
 |next()                 |this.wizard.current.next() | wizard.current.next()|
-|prev()                 |this.wizard.current.prev() | wizard.current.next() |
+|prev()                 |this.wizard.current.prev() | wizard.current.prev() |
 |goTo(`stepIndex`)      |this.wizard.current.goTo(`stepIndex`) |wizard.current.goTo(`stepIndex`)|
 
 ## Understanding the usage of Step
 
-This wizard using your component class/function as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
+This wizard using your component class/function as a child. Every time this Wizard rendering your active step.
 
 ## Example App
 
@@ -100,6 +100,7 @@ react-native run-ios/android
 ## Basic Usage
 
 ```javascript
+import React, {useRef,useState} from 'react'
 // import Wizard
 import Wizard from "react-native-wizard"
 
@@ -110,35 +111,35 @@ import Step3 from "./yourStepsDir/Step3";
 
 // ...
 
-const steps = [
-      {
-        component: () => <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
-      },
+const wizard = useRef(null);
+const [isFirstStep, setIsFirstStep] = useState(true)
+const [isLastStep, setIsLastStep] = useState(false)
+const stepList = [
     {
-        component: Step2,
-        props    : {
-          step2Special: "Step 2 special props"
-        }
+      content: <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
     },
     {
-        component: Step3,
-        props    : {
-          step3Special: "Step 3 special props"
-        }
+      content: <Step2 testProp="Welcome to Second Step"/>
     },
-    ]
-    <Wizard
-        ref={(e) => this.wizard = e}
-        currentStep={(currentIndex, isFirstStep, isLastStep) => {
-             this.setState({
-                isLastStep  : isLastStep,
-                isFirstStep : isFirstStep,
-                currentIndex: currentIndex
-            })
-         }}
-        steps={steps}
+    {
+      content: <Step3 step3Prop="Welcome to Third Step"/>
+    },
+   ]
+   <Wizard
+        ref={wizard}
+        steps={stepList}
+        isFirstStep={val => setIsFirstStep(val)}
+        isLastStep={val => setIsLastStep(val)}
+        onNext={() => {
+            console.log("Next Step Called")
+        }}
+        onPrev={() => {
+            console.log("Previous Step Called")
+        }}
+        currentStep={({ currentStep, isLastStep, isFirstStep }) => {
+            setCurrentStep(currentStep)
+        }}
     />
-
 ```
 
 ## Advanced Usage
