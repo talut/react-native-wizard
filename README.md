@@ -143,9 +143,7 @@ const stepList = [
     />
 ```
 
-## Advanced Usage
-
-You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
+## Advanced Usage Example
 
 ```javascript
 import React, { useRef, useState } from "react"
@@ -184,7 +182,7 @@ export default () => {
             borderBottomWidth: 1,
           }}>
           <Button disabled={isFirstStep} title="Geri" onPress={() => wizard.current.prev()} />
-          <Text>{currentStep + 1}. Adım</Text>
+          <Text>{currentStep + 1}. Step</Text>
           <Button disabled={isLastStep} title="İleri" onPress={() => wizard.current.next()} />
         </View>
       </SafeAreaView>
