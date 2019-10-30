@@ -5,8 +5,8 @@ Easy, convenient, quick-forming Wizard component for React Native. This package 
 <p align='center'><img src='#' alt='PinView 1'></p>
 
 
-## v2.0 Released
-With _v2.0_ almost everything changed. 
+## v2.0.0 Released
+With _v2.0.0_ almost everything changed. 
 - 5 animation added.
 - Next step / prev step animation props added.
 - Transition issues solved, duration props work well.
@@ -112,8 +112,8 @@ import Step3 from "./yourStepsDir/Step3";
 // ...
 
 const wizard = useRef();
-const [isFirstStep, setIsFirstStep] = useState(true) // if you set active step different then you should not forget to update this state.
-const [isLastStep, setIsLastStep] = useState(false)
+const [isFirstStep, setIsFirstStep] = useState()
+const [isLastStep, setIsLastStep] = useState()
 const stepList = [
     {
       content: <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
@@ -221,8 +221,6 @@ export default () => {
   )
 }
 ```
-### Note
- This package has no step show component but you can easily add by yourself. Maybe at the future I can add this feature.
 
 ## License
 

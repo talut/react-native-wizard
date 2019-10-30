@@ -1,12 +1,16 @@
-// Type definitions for react-native-wizard 1.0.1
+// Type definitions for react-native-wizard 2.0.0
 // Project: https://github.com/talut/react-native-wizard
 // Definitions by: Talut TASGIRAN <https://github.com/talut>
 // TypeScript Version: 2.8
 
 declare module "react-native-wizard" {
-    import React from 'react';
+    import React from "react";
 
     interface WizardProps {
+        /*
+        Ref callback for using this package
+         */
+        ref: ({current:object})=>void,
         /*
         Set active step with index of step.
          */
@@ -20,14 +24,6 @@ declare module "react-native-wizard" {
          */
         duration?: number,
         /*
-        Get nextButton showable status from step
-         */
-        showNextButton?: () => void,
-        /*
-        Get prevButton showable status from step
-        */
-        showPrevButton?: () => void,
-        /*
         Callback function run after prev()
         */
         onPrev?: () => void,
@@ -36,9 +32,21 @@ declare module "react-native-wizard" {
         */
         onNext?: () => void,
         /*
-        Callback function run after last step next()
+        nextStepAnimation name
         */
-        onFinish?: () => void,
+        nextStepAnimation?: string,
+        /*
+        prevStepAnimation name
+        */
+        prevStepAnimation?: string,
+        /*
+        Callback function: running if is first step
+        */
+        isFirstStep?: (value:boolean) => void,
+        /*
+        Callback function: running if is last step
+        */
+        isLastStep?: (value:boolean) => void,
         /*
         Callback function run step change.
         */

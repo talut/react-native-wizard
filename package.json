@@ -20,7 +20,7 @@
     "js-stepper",
     "easy-wizard"
   ],
-  "main": "index.tsx",
+  "main": "index.js",
   "types": "react-native-wizard.d.ts",
   "author": "Talut Tasgiran",
   "license": "MIT",
