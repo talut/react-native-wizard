@@ -3,8 +3,9 @@
   "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/talut/react-native-wizard.git"
+    "url": "git://github.com/talut/react-native-wizard.git"
   },
+  "publishConfig": {"registry": "https://npm.pkg.github.com/@talut"},
   "description": "Easy, convenient, quick-forming Wizard component for React Native",
   "keywords": [
     "react-native",
