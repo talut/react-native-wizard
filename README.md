@@ -47,6 +47,16 @@ yarn add react-native-wizard
 |nextStepAnimation      |You can set animation for next step transition.|`string`|**No**|`fade`|
 |prevStepAnimation      |You can set animation for prev step transition.|`string`|**No**|`fade`|
 
+## Animations (`nextStepAnimation="fade"`)
+
+| Animation | Usage |
+|-----------------------|-----------------------|
+|`fade`                 |`nextStepAnimation="fade"` or `prevStepAnimation="fade"` |
+|`slideLeft`            |`nextStepAnimation="slideLeft"` or `prevStepAnimation="slideLeft"` |
+|`slideRight`           |`nextStepAnimation="slideRight"` or `prevStepAnimation="slideRight"` |
+|`slideUp`              |`nextStepAnimation="slideUp"` or `prevStepAnimation="slideUp"` |
+|`slideDown`            |`nextStepAnimation="slideDown"` or `prevStepAnimation="slideDown"` |
+
 ## Reference Functions (`ref={e=>this.wizard=e}`)
 
 | Props                 |Usage                  |
