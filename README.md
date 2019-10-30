@@ -111,8 +111,8 @@ import Step3 from "./yourStepsDir/Step3";
 
 // ...
 
-const wizard = useRef(null);
-const [isFirstStep, setIsFirstStep] = useState(true)
+const wizard = useRef();
+const [isFirstStep, setIsFirstStep] = useState(true) // if you set active step different then you should not forget to update this state.
 const [isLastStep, setIsLastStep] = useState(false)
 const stepList = [
     {
@@ -127,6 +127,7 @@ const stepList = [
    ]
    <Wizard
         ref={wizard}
+        activeStep={0}
         steps={stepList}
         isFirstStep={val => setIsFirstStep(val)}
         isLastStep={val => setIsLastStep(val)}
@@ -146,49 +147,82 @@ const stepList = [
 
 You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
 
-```
-<Wizard
-              activeStep={2}
-              showNextButton={(status) => {
-                status ? console.log("SHOW") : console.log("HIDE")
-              }}
-              showPrevButton={(status) => {
-                status ? console.log("SHOW") : console.log("HIDE")
-              }}
-              ref={(e) => this.wizard = e}
-              currentStep={(currentIndex, isFirstStep, isLastStep) => {
-                this.setState({
-                  isLastStep  : isLastStep,
-                  isFirstStep : isFirstStep,
-                  currentIndex: currentIndex
-                })
-              }}
-              duration={500}
-              onNext={() => {console.log("Next page called")}}
-              onPrev={() => {console.log("Prev page called")}}
-              onFinish={() => {alert("onFinish called")}}
-              steps={steps}/>
-```
-
 ```javascript
+import React, { useRef, useState } from "react"
+import { SafeAreaView, Button, View, Text } from "react-native"
+import Wizard from "react-native-wizard"
 
-// this.wizard.next()
- <Button onPress={() => {
-              this.wizard.next();
-            }} title={this.state.isLastStep ? "Bitir" : "İlerle"}/>
+export default () => {
+  const wizard = useRef()
+  const [isFirstStep, setIsFirstStep] = useState(true)
+  const [isLastStep, setIsLastStep] = useState(false)
+  const [currentStep, setCurrentStep] = useState(0)
+  const stepList = [
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#000" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#e04851" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 500, backgroundColor: "#9be07d" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#2634e0" }} />,
+    },
+  ]
 
-// this.wizard.prev() if is not first step!
-{!this.state.isFirstStep ? <Button onPress={() => {
-              this.wizard.prev();
-            }} title={"Go Back"}/> : undefined}
-
-// this.wizard.goToStep(2)
-<Button onPress={() => {
-              this.wizard.goToStep(2);
-            }} title={"Go to index 2 If you set 3 step then that means step 3"}/>
-
+  return (
+    <View>
+      <SafeAreaView style={{ backgroundColor: "#FFF" }}>
+        <View
+          style={{
+            justifyContent: "space-between",
+            flexDirection: "row",
+            backgroundColor: "#FFF",
+            borderBottomColor: "#dedede",
+            borderBottomWidth: 1,
+          }}>
+          <Button disabled={isFirstStep} title="Geri" onPress={() => wizard.current.prev()} />
+          <Text>{currentStep + 1}. Adım</Text>
+          <Button disabled={isLastStep} title="İleri" onPress={() => wizard.current.next()} />
+        </View>
+      </SafeAreaView>
+      <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+        <Wizard
+          ref={wizard}
+          steps={stepList}
+          isFirstStep={val => setIsFirstStep(val)}
+          isLastStep={val => setIsLastStep(val)}
+          onNext={() => {
+            console.log("Next Step Called")
+          }}
+          onPrev={() => {
+            console.log("Previous Step Called")
+          }}
+          currentStep={({ currentStep, isLastStep, isFirstStep }) => {
+            setCurrentStep(currentStep)
+          }}
+        />
+        <View style={{ flexDirection: "row", margin: 18 }}>
+          {stepList.map((val, index) => (
+            <View
+              key={"step-indicator-" + index}
+              style={{
+                width: 10,
+                marginHorizontal: 6,
+                height: 10,
+                borderRadius: 5,
+                backgroundColor: index === currentStep ? "#fc0" : "#000",
+              }}
+            />
+          ))}
+        </View>
+      </View>
+    </View>
+  )
+}
 ```
-
 ### Note
  This package has no step show component but you can easily add by yourself. Maybe at the future I can add this feature.
 
