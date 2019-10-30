@@ -5,7 +5,7 @@ Easy, convenient, quick-forming Wizard component for React Native. This package 
 <p align='center'><img src='#' alt='PinView 1'></p>
 
 
-## v2.0.0 Released
+## v2.0.0 Released. _This is a fresh start._
 With _v2.0.0_ almost everything changed. 
 - 5 animation added.
 - Next step / prev step animation props added.
@@ -27,9 +27,6 @@ npm install --save react-native-wizard
 ```
 yarn add react-native-wizard
 ```
-
-### 1.0.1 Features
-* TypeScript definitions added.
 
 ## Props
 

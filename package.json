@@ -1,6 +1,6 @@
 {
   "name": "react-native-wizard",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/talut/react-native-wizard.git"
@@ -10,6 +10,7 @@
   "keywords": [
     "react-native",
     "wizard",
+    "stepper",
     "step",
     "react native step",
     "steps",
