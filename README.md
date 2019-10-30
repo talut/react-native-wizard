@@ -49,21 +49,35 @@ yarn add react-native-wizard
 
 ## Animations (`nextStepAnimation="fade"`)
 
-| Animation | Usage |
-|-----------------------|-----------------------|
-|`fade`                 |`nextStepAnimation="fade"` or `prevStepAnimation="fade"` |
-|`slideLeft`            |`nextStepAnimation="slideLeft"` or `prevStepAnimation="slideLeft"` |
-|`slideRight`           |`nextStepAnimation="slideRight"` or `prevStepAnimation="slideRight"` |
-|`slideUp`              |`nextStepAnimation="slideUp"` or `prevStepAnimation="slideUp"` |
-|`slideDown`            |`nextStepAnimation="slideDown"` or `prevStepAnimation="slideDown"` |
+| Animation List | 
+|-----------------------|
+|`fade`                 |
+|`slideLeft`            |
+|`slideRight`           |
+|`slideUp`              |
+|`slideDown`            |
 
-## Reference Functions (`ref={e=>this.wizard=e}`)
 
-| Props                 |Usage                  |
-|-----------------------|-----------------------|
-|next()                 |this.wizard.next() |
-|prev()                 |this.wizard.prev() |
-|goToStep(stepIndex)                 |this.wizard.goToStep(stepIndex)|
+## Reference Functions
+
+**With functional component and hooks**
+```javascript
+import React, {useRef} from 'react'
+const wizard = useRef(null)
+// Usage 
+<Wizard ref={wizard} />
+```
+
+**With class component**
+```javascript
+<Wizard ref={e=>this.wizard=e} />
+```
+
+| Props                 |Usage With useRef |Usage without useRef|
+|-----------------------|-----------------------|-------------------------|
+|next()                 |this.wizard.current.next() | wizard.current.next()|
+|prev()                 |this.wizard.current.prev() | wizard.current.next() |
+|goTo(`stepIndex`)      |this.wizard.current.goTo(`stepIndex`) |wizard.current.goTo(`stepIndex`)|
 
 ## Understanding the usage of Step
 
