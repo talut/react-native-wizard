@@ -66,6 +66,7 @@ const wizard = useRef(null)
 ```
 
 **With class component**
+If you're not using functional component so you should create a ref with `React.createRef()`.
 ```javascript
 wizard = React.createRef()
 <Wizard ref={this.wizard} />

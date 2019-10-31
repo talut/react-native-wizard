@@ -1,3 +1,8 @@
+/*
+PackageName: react-native-wizard
+Author: Talut TASGIRAN
+Author URL: https://talut.dev
+ */
 import React, { useEffect, useState } from "react"
 import { Animated, Dimensions } from "react-native"
 
