@@ -67,7 +67,8 @@ const wizard = useRef(null)
 
 **With class component**
 ```javascript
-<Wizard ref={e=>this.wizard=e} />
+wizard = React.createRef()
+<Wizard ref={this.wizard} />
 ```
 
 | Props                 |Usage _without_ useRef | Usage _with_ useRef|

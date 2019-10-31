@@ -10,7 +10,7 @@ declare module "react-native-wizard" {
         /*
         Ref callback for using this package
          */
-        ref: ({current:object})=>void,
+        ref: ({current})=>void,
         /*
         Set active step with index of step.
          */
@@ -50,7 +50,7 @@ declare module "react-native-wizard" {
         /*
         Callback function run step change.
         */
-        currentStep: (activeStep: number, isFirstStep: boolean, isLastStep: boolean) => void,
+        currentStep?: (activeStep: number, isFirstStep: boolean, isLastStep: boolean) => void,
     }
 
     const Wizard: (props: WizardProps) => React.Component<WizardProps>
