@@ -46,13 +46,14 @@ yarn add react-native-wizard
 
 ## Animations (`nextStepAnimation="fade"`)
 You can use this animations for `prevStep` or `nextStep`
-| Animation List | 
-|-----------------------|
-|`fade`                 |
-|`slideLeft`            |
-|`slideRight`           |
-|`slideUp`              |
-|`slideDown`            |
+
+|Animation List|
+|-----------------|
+|`fade`           |
+|`slideLeft`      |
+|`slideRight`     |
+|`slideUp`        |
+|`slideDown`      |
 
 
 ## Reference Functions
