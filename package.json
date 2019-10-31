@@ -1,14 +1,16 @@
 {
   "name": "react-native-wizard",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/talut/react-native-wizard.git"
+    "url": "git://github.com/talut/react-native-wizard.git"
   },
+  "publishConfig": {"registry": "https://npm.pkg.github.com/@talut"},
   "description": "Easy, convenient, quick-forming Wizard component for React Native",
   "keywords": [
     "react-native",
     "wizard",
+    "stepper",
     "step",
     "react native step",
     "steps",
@@ -19,7 +21,7 @@
     "js-stepper",
     "easy-wizard"
   ],
-  "main": "index.tsx",
+  "main": "index.js",
   "types": "react-native-wizard.d.ts",
   "author": "Talut Tasgiran",
   "license": "MIT",

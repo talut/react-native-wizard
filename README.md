@@ -1,10 +1,18 @@
 # React Native Wizard
  
-Easy, convenient, quick-forming Wizard component for React Native. This package is not using any native modules so you don't need to run `react-native link`. Also this package is providing simple usage with few props and functions. You can see examples below the page.
+Easy, convenient, quick-forming Wizard component for React Native.  Also this package is providing simple usage with few props and functions. You can see examples below the page.
+
+<p align='center'><img src='./example/react-native-wizard.gif' alt='ReactNativeWizard'></p>
 
 
-<p align='center'><img src='https://taluttasgiran.com.tr/assets/reactNativeWizardExample.gif' alt='PinView 1'></p>
-
+## v2.0.0 Released. _This is a fresh start. :)_
+With _v2.0.0_ almost everything changed. 
+- 5 animation added.
+- Next step / prev step animation props added.
+- Transition issues solved, duration props work well.
+- Last step, first step callbacks added.
+- Step change callback added. `currentStep(({currentStep, isLastStep, isFirstStep})=>{})`
+- onFinish callback removed. You can easily use `isLastStep` for this callback.
 
 ## Getting Started
 
@@ -20,35 +28,60 @@ npm install --save react-native-wizard
 yarn add react-native-wizard
 ```
 
-### 1.0.1 Features
-* TypeScript definitions added.
-
 ## Props
 
-| Props                 |Description|
-|-----------------------|-----------------------|
-|activeStep             |For setting active step at start.|
-|showNextButton         |If you want to get showable status of showNextButton from Step use this.
-|showPrevButton         |If you want to get showable status of showPrevButton from Step use this.|
-|ref                    |You need to set ref for using some function like `goToStep()`|    
-|currentStep            |You can get current step index. Also you can get that step is last step or first step. **Required**|
-|duration               |You can set duration of transition animation. Default is `500` |
-|onNext                 |If next button click and step is change, this function will run.|
-|onPrev                 |If prev button click and step is change, this function will run.|
-|onFinish               |If you click next button and if that step the last one then this function will run.|
-|steps                  |You can set step with this prop. **Required**|
+| Props                 |Description|Type|Required|Default|
+|-----------------------|-----------------------|------|--------|-------|
+|activeStep             |For setting active step at start.|`int`|**No**|`0`|
+|ref                    |You need to set ref for using some function like `goToStep()`, `next()` etc.|`void`|**Yes**|-|
+|currentStep            |You can get current step index. Also you can get that step is last step or first step. Also you can use isFirstStep and isLastStep callbacks.|`void`|**No**|-|
+|isFirstStep            |You can get active step is first step or not with this callback. This callback is returning `boolean` value|`void`|**No**|-|
+|isLastStep             |You can get active step is last step or not with this callback. This callback is returning `boolean` value|`void`|**No**|-|
+|duration               |You can set duration of transition animation.|`int`|**No**|`500`|
+|onNext                 |If next button click and step is change, this function will run.|`void`|**No**|-|
+|onPrev                 |If prev button click and step is change, this function will run.|`void`|**No**|-|
+|steps                  |You can set steps with this prop.|`object`|**Yes**|-|
+|nextStepAnimation      |You can set animation for next step transition.|`string`|**No**|`fade`|
+|prevStepAnimation      |You can set animation for prev step transition.|`string`|**No**|`fade`|
 
-## Reference Functions (`ref={e=>this.wizard=e}`)
+## Animations (`nextStepAnimation="fade"`)
+You can use this animations for `prevStep` or `nextStep`
+| Animation List | 
+|-----------------------|
+|`fade`                 |
+|`slideLeft`            |
+|`slideRight`           |
+|`slideUp`              |
+|`slideDown`            |
 
-| Props                 |Usage                  |
-|-----------------------|-----------------------|
-|next()                 |this.wizard.next() |
-|prev()                 |this.wizard.prev() |
-|goToStep(stepIndex)                 |this.wizard.goToStep(stepIndex)|
+
+## Reference Functions
+
+**With functional component and hooks**
+I sincerely recommend using `hooks`.
+```javascript
+import React, {useRef} from 'react'
+const wizard = useRef(null)
+// Usage 
+<Wizard ref={wizard} />
+```
+
+**With class component**
+If you're not using functional component so you should create a ref with `React.createRef()`.
+```javascript
+wizard = React.createRef()
+<Wizard ref={this.wizard} />
+```
+
+| Props                 |Usage _without_ useRef | Usage _with_ useRef|
+|-----------------------|-----------------------|-------------------------|
+|next()                 |this.wizard.current.next() | wizard.current.next()|
+|prev()                 |this.wizard.current.prev() | wizard.current.prev() |
+|goTo(`stepIndex`)      |this.wizard.current.goTo(`stepIndex`) |wizard.current.goTo(`stepIndex`)|
 
 ## Understanding the usage of Step
 
-This wizard using your component class/function as a child. Every time this Wizard rendering your active step with your setted props. Also wizard sending some props for in step usage.  Like `goToStep(stepIndex)`, `goNext()` and `goBack()` also step is sending showable status of next and back button to root component. With this props your step can manage wizard.
+This wizard using your component class/function as a child. Every time this Wizard rendering your active step.
 
 ## Example App
 
@@ -67,6 +100,7 @@ react-native run-ios/android
 ## Basic Usage
 
 ```javascript
+import React, {useRef,useState} from 'react'
 // import Wizard
 import Wizard from "react-native-wizard"
 
@@ -77,86 +111,116 @@ import Step3 from "./yourStepsDir/Step3";
 
 // ...
 
-const steps = [
-      {
-        component: () => <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
-      },
+const wizard = useRef();
+const [isFirstStep, setIsFirstStep] = useState()
+const [isLastStep, setIsLastStep] = useState()
+const stepList = [
     {
-        component: Step2,
-        props    : {
-          step2Special: "Step 2 special props"
-        }
+      content: <Image source={{uri: "http://placehold.it/96x96"}} style={{width:50, height:50}}/>,
     },
     {
-        component: Step3,
-        props    : {
-          step3Special: "Step 3 special props"
-        }
+      content: <Step2 testProp="Welcome to Second Step"/>
     },
-    ]
-    <Wizard
-        ref={(e) => this.wizard = e}
-        currentStep={(currentIndex, isFirstStep, isLastStep) => {
-             this.setState({
-                isLastStep  : isLastStep,
-                isFirstStep : isFirstStep,
-                currentIndex: currentIndex
-            })
-         }}
-        steps={steps}
+    {
+      content: <Step3 step3Prop="Welcome to Third Step"/>
+    },
+   ]
+   <Wizard
+        ref={wizard}
+        activeStep={0}
+        steps={stepList}
+        isFirstStep={val => setIsFirstStep(val)}
+        isLastStep={val => setIsLastStep(val)}
+        onNext={() => {
+            console.log("Next Step Called")
+        }}
+        onPrev={() => {
+            console.log("Previous Step Called")
+        }}
+        currentStep={({ currentStep, isLastStep, isFirstStep }) => {
+            setCurrentStep(currentStep)
+        }}
     />
-
 ```
 
-## Advanced Usage
-
-You can access `this.wizard.next()`, `this.wizard.prev()` and `goToStep(stepIndex)` functions via `ref={(e) => this.wizard = e}`
-
-```
-<Wizard
-              activeStep={2}
-              showNextButton={(status) => {
-                status ? console.log("SHOW") : console.log("HIDE")
-              }}
-              showPrevButton={(status) => {
-                status ? console.log("SHOW") : console.log("HIDE")
-              }}
-              ref={(e) => this.wizard = e}
-              currentStep={(currentIndex, isFirstStep, isLastStep) => {
-                this.setState({
-                  isLastStep  : isLastStep,
-                  isFirstStep : isFirstStep,
-                  currentIndex: currentIndex
-                })
-              }}
-              duration={500}
-              onNext={() => {console.log("Next page called")}}
-              onPrev={() => {console.log("Prev page called")}}
-              onFinish={() => {alert("onFinish called")}}
-              steps={steps}/>
-```
+## Advanced Usage Example
 
 ```javascript
+import React, { useRef, useState } from "react"
+import { SafeAreaView, Button, View, Text } from "react-native"
+import Wizard from "react-native-wizard"
 
-// this.wizard.next()
- <Button onPress={() => {
-              this.wizard.next();
-            }} title={this.state.isLastStep ? "Bitir" : "İlerle"}/>
+export default () => {
+  const wizard = useRef()
+  const [isFirstStep, setIsFirstStep] = useState(true)
+  const [isLastStep, setIsLastStep] = useState(false)
+  const [currentStep, setCurrentStep] = useState(0)
+  const stepList = [
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#000" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#e04851" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 500, backgroundColor: "#9be07d" }} />,
+    },
+    {
+      content: <View style={{ width: 100, height: 100, backgroundColor: "#2634e0" }} />,
+    },
+  ]
 
-// this.wizard.prev() if is not first step!
-{!this.state.isFirstStep ? <Button onPress={() => {
-              this.wizard.prev();
-            }} title={"Go Back"}/> : undefined}
-
-// this.wizard.goToStep(2)
-<Button onPress={() => {
-              this.wizard.goToStep(2);
-            }} title={"Go to index 2 If you set 3 step then that means step 3"}/>
-
+  return (
+    <View>
+      <SafeAreaView style={{ backgroundColor: "#FFF" }}>
+        <View
+          style={{
+            justifyContent: "space-between",
+            flexDirection: "row",
+            backgroundColor: "#FFF",
+            borderBottomColor: "#dedede",
+            borderBottomWidth: 1,
+          }}>
+          <Button disabled={isFirstStep} title="Prev" onPress={() => wizard.current.prev()} />
+          <Text>{currentStep + 1}. Step</Text>
+          <Button disabled={isLastStep} title="Next" onPress={() => wizard.current.next()} />
+        </View>
+      </SafeAreaView>
+      <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+        <Wizard
+          ref={wizard}
+          steps={stepList}
+          isFirstStep={val => setIsFirstStep(val)}
+          isLastStep={val => setIsLastStep(val)}
+          onNext={() => {
+            console.log("Next Step Called")
+          }}
+          onPrev={() => {
+            console.log("Previous Step Called")
+          }}
+          currentStep={({ currentStep, isLastStep, isFirstStep }) => {
+            setCurrentStep(currentStep)
+          }}
+        />
+        <View style={{ flexDirection: "row", margin: 18 }}>
+          {stepList.map((val, index) => (
+            <View
+              key={"step-indicator-" + index}
+              style={{
+                width: 10,
+                marginHorizontal: 6,
+                height: 10,
+                borderRadius: 5,
+                backgroundColor: index === currentStep ? "#fc0" : "#000",
+              }}
+            />
+          ))}
+        </View>
+      </View>
+    </View>
+  )
+}
 ```
-
-### Note
- This package has no step show component but you can easily add by yourself. Maybe at the future I can add this feature.
 
 ## License
 
