@@ -1,8 +1,3 @@
-/*
-PackageName: react-native-wizard
-Author: Talut TASGIRAN
-Author URL: https://talut.dev
- */
 import React, { useEffect, useState } from "react"
 import { Animated, Dimensions } from "react-native"
 
@@ -11,11 +6,11 @@ export default React.forwardRef(
     {
         steps,
         activeStep = 0,
-        currentStep,
-        onNext,
-        onPrev,
-        isFirstStep,
-        isLastStep,
+        currentStep = () => {},
+        onNext = () => {},
+        onPrev = () => {},
+        isFirstStep = () => {},
+        isLastStep = () => {},
         duration = 500,
         nextStepAnimation = "fade",
         prevStepAnimation = "fade",
