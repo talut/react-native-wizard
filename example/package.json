@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.4",
-    "react-native-wizard": "1.0.0"
+    "react-native-wizard": "2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
