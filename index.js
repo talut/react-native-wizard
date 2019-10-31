@@ -58,13 +58,19 @@ export default React.forwardRef(
               }
           },
       }
-      currentStep({
-          currentStep: activeStepNo,
-          isFirstStep: activeStepNo === 0,
-          isLastStep: activeStepNo === steps.length - 1,
-      })
-      isFirstStep(activeStepNo === 0)
-      isLastStep(activeStepNo === steps.length - 1)
+
+      useEffect(() => {
+          currentStep({
+              currentStep: activeStepNo,
+              isFirstStep: activeStepNo === 0,
+              isLastStep: activeStepNo === steps.length - 1,
+          })
+      },[activeStepNo, steps.length])
+
+      useEffect(() => {
+          isFirstStep(activeStepNo === 0)
+          isLastStep(activeStepNo === steps.length - 1)
+      }, [activeStepNo, steps.length])
       return (
         <Step
           currentStep={activeStepNo}

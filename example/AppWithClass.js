@@ -1,15 +1,14 @@
 import React, { Component } from "react"
 
-import { Button, SafeAreaView, View } from "react-native"
+import { Button, SafeAreaView, View, Text } from "react-native"
 // Wizard
 import Wizard from "react-native-wizard"
 
 export default class App extends Component {
   state = {
-    isLastStep  : false,
-    isFirstStep : false,
-    currentIndex: 0
-  };
+    isFirstStep: false,
+    isLastStep: false,
+  }
   wizard = React.createRef()
   render() {
     const stepList = [
@@ -24,11 +23,22 @@ export default class App extends Component {
       },
     ]
     return (
-        <SafeAreaView style={{flex: 1}}>
-          <Button title={"Next"} onPress={() => this.wizard.current.next()} />
-          <Button title={"Prev"} onPress={() => this.wizard.current.prev()} />
-          <Wizard ref={this.wizard} duration={1500} steps={stepList} currentStep={() => {}} />
-        </SafeAreaView>
+      <SafeAreaView>
+        <Button title={"Next"} disabled={this.state.isLastStep} onPress={() => this.wizard.current.next()} />
+        <Button title={"Prev"} disabled={this.state.isFirstStep} onPress={() => this.wizard.current.prev()} />
+        <Text>{this.state.currentStep}</Text>
+        <Wizard
+          activeStep={2}
+          isLastStep={value => this.setState({ isLastStep: value })}
+          isFirstStep={value => this.setState({ isFirstStep: value })}
+          ref={this.wizard}
+          duration={1500}
+          steps={stepList}
+          currentStep={({ currentStep }) => {
+            this.setState({ currentStep: currentStep })
+          }}
+        />
+      </SafeAreaView>
     )
   }
 };
