@@ -53,6 +53,6 @@ declare module "react-native-wizard" {
         currentStep: ({currentStep, isFirstStep, isLastStep}: {currentStep: number, isFirstStep: boolean, isLastStep: boolean}) => void,
     }
 
-    const Wizard: (props: WizardProps) => React.Component<WizardProps>
+    const Wizard: (props: WizardProps) => JSX.Element
     export default Wizard;
 }
