@@ -10,7 +10,7 @@ declare module "react-native-wizard" {
         /*
         Ref is required for using this package
          */
-        ref: ({current:object})=>void,
+        ref: React.RefObject<any> | React.MutableRefObject<any>,
         /*
         Set active step with index of step.
          */
