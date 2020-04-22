@@ -57,6 +57,7 @@ export default React.forwardRef(
                   setActiveStepNo(step)
               }
           },
+          currentStep: () => activeStepNo
       }
 
       useEffect(() => {
