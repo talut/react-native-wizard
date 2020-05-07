@@ -1,12 +1,12 @@
 # React Native Wizard
- 
+
 Easy, convenient, quick-forming Wizard component for React Native.  Also this package is providing simple usage with few props and functions. You can see examples below the page.
 
 <p align='center'><img src='./example/react-native-wizard.gif' alt='ReactNativeWizard'></p>
 
 
 ## v2.0.0 Released. _This is a fresh start. :)_
-With _v2.0.0_ almost everything changed. 
+With _v2.0.0_ almost everything changed.
 - 5 animation added.
 - Next step / prev step animation props added.
 - Transition issues solved, duration props work well.
@@ -43,6 +43,7 @@ yarn add react-native-wizard
 |steps                  |You can set steps with this prop.|`object`|**Yes**|-|
 |nextStepAnimation      |You can set animation for next step transition.|`string`|**No**|`fade`|
 |prevStepAnimation      |You can set animation for prev step transition.|`string`|**No**|`fade`|
+|containerStyles        |You can set styles for the parent View.|`ViewStyle`|**No**|-|
 
 ## Animations (`nextStepAnimation="fade"`)
 You can use this animations for `prevStep` or `nextStep`
@@ -63,7 +64,7 @@ I sincerely recommend using `hooks`.
 ```javascript
 import React, {useRef} from 'react'
 const wizard = useRef(null)
-// Usage 
+// Usage
 <Wizard ref={wizard} />
 ```
 

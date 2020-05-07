@@ -14,6 +14,7 @@ export default React.forwardRef(
         duration = 500,
         nextStepAnimation = "fade",
         prevStepAnimation = "fade",
+        containerStyles = {}
     },
     ref
   ) => {
@@ -77,12 +78,13 @@ export default React.forwardRef(
           duration={duration}
           animation={isNext ? nextStepAnimation : prevStepAnimation}
           content={steps[activeStepNo].content}
+          containerStyles={containerStyles}
         />
       )
   }
 )
 
-const Step = ({ content, animation, duration, currentStep }) => {
+const Step = ({ content, animation, duration, currentStep, containerStyles }) => {
     const [style, setStyle] = useState(undefined)
     useEffect(() => {
         switch (animation) {
@@ -166,5 +168,5 @@ const Step = ({ content, animation, duration, currentStep }) => {
             setStyle({ opacity: opacity })
         }
     }, [animation, duration, setStyle, currentStep])
-    return <Animated.View style={style}>{content}</Animated.View>
+    return <Animated.View style={[style, containerStyles]}>{content}</Animated.View>
 }
