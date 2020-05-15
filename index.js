@@ -78,12 +78,13 @@ export default React.forwardRef(
           duration={duration}
           animation={isNext ? nextStepAnimation : prevStepAnimation}
           content={steps[activeStepNo].content}
+          useNativeDriver={useNativeDriver}
         />
       )
   }
 )
 
-const Step = ({ content, animation, duration, currentStep }) => {
+const Step = ({ content, animation, duration, currentStep, useNativeDriver }) => {
     const [style, setStyle] = useState(undefined)
     useEffect(() => {
         switch (animation) {
