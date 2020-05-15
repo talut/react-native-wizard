@@ -14,6 +14,7 @@ export default React.forwardRef(
         duration = 500,
         nextStepAnimation = "fade",
         prevStepAnimation = "fade",
+        useNativeDriver = true,
     },
     ref
   ) => {
@@ -91,6 +92,7 @@ const Step = ({ content, animation, duration, currentStep }) => {
                 Animated.timing(slideLeft, {
                     toValue: 0,
                     duration: duration,
+                    useNativeDriver,
                 }).start()
                 setStyle({
                     transform: [
@@ -106,6 +108,7 @@ const Step = ({ content, animation, duration, currentStep }) => {
                 Animated.timing(slideRight, {
                     toValue: 0,
                     duration: duration,
+                    useNativeDriver,
                 }).start()
                 setStyle({
                     transform: [
@@ -122,6 +125,7 @@ const Step = ({ content, animation, duration, currentStep }) => {
                 Animated.timing(slideUp, {
                     toValue: 0,
                     duration: duration,
+                    useNativeDriver,
                 }).start()
                 setStyle({
                     transform: [
@@ -153,6 +157,7 @@ const Step = ({ content, animation, duration, currentStep }) => {
                 Animated.timing(opacity, {
                     toValue: 1,
                     duration: duration,
+                    useNativeDriver,
                 }).start()
                 setStyle({ opacity: opacity })
             }
@@ -162,6 +167,7 @@ const Step = ({ content, animation, duration, currentStep }) => {
             Animated.timing(opacity, {
                 toValue: 0,
                 duration: 300,
+                useNativeDriver,
             }).start()
             setStyle({ opacity: opacity })
         }
