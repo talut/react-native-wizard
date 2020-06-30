@@ -5,6 +5,8 @@ Easy, convenient, quick-forming Wizard component for React Native.  Also this pa
 <p align='center'><img src='./example/react-native-wizard.gif' alt='ReactNativeWizard'></p>
 
 
+## v2.1.0 Released.
+
 ## v2.0.0 Released. _This is a fresh start. :)_
 With _v2.0.0_ almost everything changed.
 - 5 animation added.
