@@ -4,13 +4,13 @@
 // TypeScript Version: 2.8
 
 declare module "react-native-wizard" {
-    import React from "react";
+    import React, {MutableRefObject, FunctionComponent} from 'react';
 
     interface WizardProps {
         /*
         Ref is required for using this package
          */
-        ref: ({current:object})=>void,
+        ref: MutableRefObject<any>,
         /*
         Set active step with index of step.
          */
@@ -50,9 +50,14 @@ declare module "react-native-wizard" {
         /*
         Callback function run step change.
         */
-        currentStep: (activeStep: number, isFirstStep: boolean, isLastStep: boolean) => void,
+        currentStep: (payload: {
+            currentStep: number;
+            isFirstStep: boolean;
+            isLastStep: boolean
+        }) => void;
     }
 
-    const Wizard: (props: WizardProps) => React.Component<WizardProps>
+    const Wizard: FunctionComponent<WizardProps>;
     export default Wizard;
 }
+
