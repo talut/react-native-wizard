@@ -52,6 +52,10 @@ declare module "react-native-wizard" {
         */
         useNativeDriver?: boolean,
         /*
+        contentContainerStyle
+        */
+        contentContainerStyle?: object,
+        /*
         Callback function run step change.
         */
         currentStep: (payload: {

@@ -15,6 +15,7 @@ export default React.forwardRef(
         nextStepAnimation = "fade",
         prevStepAnimation = "fade",
         useNativeDriver = true,
+        contentContainerStyle,
     },
     ref
   ) => {
@@ -66,7 +67,7 @@ export default React.forwardRef(
               isFirstStep: activeStepNo === 0,
               isLastStep: activeStepNo === steps.length - 1,
           })
-      },[activeStepNo, steps.length])
+      }, [activeStepNo, steps.length])
 
       useEffect(() => {
           isFirstStep(activeStepNo === 0)
@@ -74,6 +75,7 @@ export default React.forwardRef(
       }, [activeStepNo, steps.length])
       return (
         <Step
+          contentContainerStyle={contentContainerStyle}
           currentStep={activeStepNo}
           duration={duration}
           animation={isNext ? nextStepAnimation : prevStepAnimation}
@@ -84,7 +86,7 @@ export default React.forwardRef(
   }
 )
 
-const Step = ({ content, animation, duration, currentStep, useNativeDriver }) => {
+const Step = ({ content, animation, duration, currentStep, useNativeDriver,contentContainerStyle }) => {
     const [style, setStyle] = useState(undefined)
     useEffect(() => {
         switch (animation) {
@@ -173,5 +175,5 @@ const Step = ({ content, animation, duration, currentStep, useNativeDriver }) =>
             setStyle({ opacity: opacity })
         }
     }, [animation, duration, setStyle, currentStep])
-    return <Animated.View style={style}>{content}</Animated.View>
+    return <Animated.View style={[style, contentContainerStyle]}>{content}</Animated.View>
 }
