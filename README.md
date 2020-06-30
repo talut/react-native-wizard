@@ -6,8 +6,10 @@ Easy, convenient, quick-forming Wizard component for React Native.  Also this pa
 
 
 ## v2.1.0 Released.
+- contentContainerStyle added.
+- useNativeDriver flag added.
 
-## v2.0.0 Released. _This is a fresh start. :)_
+### v2.0.0 Released. _This is a fresh start. :)_
 With _v2.0.0_ almost everything changed.
 - 5 animation added.
 - Next step / prev step animation props added.
