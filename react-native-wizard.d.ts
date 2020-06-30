@@ -4,7 +4,7 @@
 // TypeScript Version: 2.8
 
 declare module "react-native-wizard" {
-    import React, {MutableRefObject, FunctionComponent} from 'react';
+    import React, {MutableRefObject, FunctionComponent} from "react";
 
     interface WizardProps {
         /*
@@ -47,6 +47,10 @@ declare module "react-native-wizard" {
         Callback function: running if is last step
         */
         isLastStep?: (value:boolean) => void,
+        /*
+        useNativeDriver
+        */
+        useNativeDriver?: boolean,
         /*
         Callback function run step change.
         */
