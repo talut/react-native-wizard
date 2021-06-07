@@ -58,7 +58,7 @@ declare module "react-native-wizard" {
         /*
         Callback function run step change.
         */
-        currentStep: (payload: {
+        currentStep?: (payload: {
             currentStep: number;
             isFirstStep: boolean;
             isLastStep: boolean

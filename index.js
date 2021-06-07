@@ -24,7 +24,7 @@ export default React.forwardRef(
       ref.current = {
           next: () => {
               if (steps.length - 1 !== activeStepNo) {
-                  setActiveStepNo(activeStepNo + 1)
+                  setActiveStepNo(activeStepNo => activeStepNo + 1)
                   setIsNext(true)
                   currentStep({
                       currentStep: activeStepNo + 1,
@@ -36,7 +36,7 @@ export default React.forwardRef(
           },
           prev: () => {
               if (activeStepNo > 0) {
-                  setActiveStepNo(activeStepNo - 1)
+                  setActiveStepNo(activeStepNo => activeStepNo - 1)
                   setIsNext(false)
                   currentStep({
                       currentStep: activeStepNo - 1,
