@@ -6,8 +6,7 @@ Easy, convenient, quick-forming Wizard component for React Native.  Also this pa
 
 
 ## v2.1.1 Released.
-- contentContainerStyle added.
-- useNativeDriver flag added.
+
 
 ## v2.1.0 Released.
 - contentContainerStyle added.
