@@ -6,7 +6,7 @@
 declare module "react-native-wizard" {
   import React, { MutableRefObject, FunctionComponent } from "react"
 
-  export interface Wizard {
+  export interface WizardRef {
     /**
      * Go to next step
      */
@@ -28,7 +28,7 @@ declare module "react-native-wizard" {
     /*
     Ref is required for using this package
      */
-    ref: MutableRefObject<Wizard>,
+    ref: MutableRefObject<WizardRef>,
     /*
     Set active step with index of step.
      */
