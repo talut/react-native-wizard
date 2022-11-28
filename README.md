@@ -62,15 +62,19 @@ You can use this animations for `prevStep` or `nextStep`
 I sincerely recommend using `hooks`.
 ```javascript
 import React, {useRef} from 'react'
-const wizard = useRef(null)
+import Wizard, { WizardRef } from 'react-native-wizard';
+
+const wizard = useRef<WizardRef>(null)
 // Usage
 <Wizard ref={wizard} />
 ```
 
 **With class component**
-If you're not using functional component so you should create a ref with `React.createRef()`.
+If you're not using functional component then you should create a ref with `React.createRef()`.
 ```javascript
-wizard = React.createRef()
+import Wizard, { WizardRef } from 'react-native-wizard';
+
+wizard = React.createRef<WizardRef>(null)
 <Wizard ref={this.wizard} />
 ```
 
@@ -84,26 +88,12 @@ wizard = React.createRef()
 
 This wizard using your component class/function as a child. Every time this Wizard rendering your active step.
 
-## Example App
-
-You can find the usage example of the package in the example folder.
-
-```sh
-git clone https://github.com/talut/react-native-wizard
-
-cd react-native-wizard/example
-
-npm install
-
-react-native run-ios/android
-```
-
 ## Basic Usage
 
 ```javascript
 import React, {useRef,useState} from 'react'
 // import Wizard
-import Wizard from "react-native-wizard"
+import Wizard, { WizardRef } from 'react-native-wizard';
 
 // Import your own step components
 import Step1 from "./yourStepsDir/Step1";
@@ -112,7 +102,7 @@ import Step3 from "./yourStepsDir/Step3";
 
 // ...
 
-const wizard = useRef();
+const wizard = useRef<WizardRef>(null);
 const [isFirstStep, setIsFirstStep] = useState()
 const [isLastStep, setIsLastStep] = useState()
 const stepList = [
@@ -149,10 +139,10 @@ const stepList = [
 ```javascript
 import React, { useRef, useState } from "react"
 import { SafeAreaView, Button, View, Text } from "react-native"
-import Wizard from "react-native-wizard"
+import Wizard, { WizardRef } from "react-native-wizard"
 
 export default () => {
-  const wizard = useRef()
+  const wizard = useRef<WizardRef>(null)
   const [isFirstStep, setIsFirstStep] = useState(true)
   const [isLastStep, setIsLastStep] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
