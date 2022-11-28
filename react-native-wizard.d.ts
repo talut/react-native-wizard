@@ -10,18 +10,18 @@ declare module "react-native-wizard" {
     /**
      * Go to next step
      */
-    next?: () => void,
+    next: () => void,
 
     /**
      * Go to previous step
      */
-    prev?: () => void,
+    prev: () => void,
 
     /**
      * Go to step with index
      * @param index Step index
      */
-    goTo?: (index: number) => void,
+    goTo: (index: number) => void,
   }
 
   interface WizardProps {
