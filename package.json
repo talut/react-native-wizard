@@ -20,6 +20,10 @@
     "js-stepper",
     "easy-wizard"
   ],
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
   "main": "index.js",
   "types": "react-native-wizard.d.ts",
   "author": "Talut Tasgiran",
